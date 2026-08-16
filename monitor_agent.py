@@ -124,7 +124,7 @@ def get_trend_signal_tool(ticker: str) -> str:
 
 
 summary_agent = create_agent(
-    model="google_genai:gemini-2.5-flash-lite",
+    model="google_genai:gemini-3.1-flash-lite",
     tools=[get_trend_signal_tool],
     system_prompt=(
         "Kamu adalah asisten yang bikin ringkasan SINGKAT (maksimal 3 "
