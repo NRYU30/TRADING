@@ -1,0 +1,6 @@
+# JANGAN PERNAH commit file ini - isinya API key & token rahasia
+.env
+
+# File sampah Python
+__pycache__/
+*.pyc
