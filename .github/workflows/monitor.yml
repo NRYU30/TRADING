@@ -1,0 +1,51 @@
+name: Trading Monitor
+
+# Jadwal: tiap 1 jam, di menit ke-0 (waktu UTC - GitHub Actions selalu
+# pakai UTC, tapi karena ini "tiap jam", ini tetap jalan tiap jam
+# berapa pun waktu lokal kamu)
+on:
+  schedule:
+    - cron: "0 * * * *"
+  workflow_dispatch: # biar bisa di-trigger manual dari tab Actions, buat testing
+
+# Izin WAJIB supaya workflow ini boleh commit balik ke repo
+permissions:
+  contents: write
+
+jobs:
+  monitor:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v4
+
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Install dependencies
+        run: |
+          pip install yfinance pandas requests python-dotenv langchain "langchain[google-genai]"
+
+      - name: Jalankan monitoring agent
+        env:
+          GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
+          GOOGLE_API_KEY: ${{ secrets.GOOGLE_API_KEY }}
+          TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
+          TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
+        run: python3 monitor_agent.py
+
+      # Cuma commit kalau trading_journal.db BENERAN berubah - supaya
+      # riwayat commit repo nggak penuh commit kosong tiap jam
+      - name: Commit state jika ada perubahan
+        run: |
+          git config user.name "Trading Monitor Bot"
+          git config user.email "actions@github.com"
+          if [[ -n $(git status --porcelain trading_journal.db) ]]; then
+            git add trading_journal.db
+            git commit -m "Update monitor state - $(date -u +'%Y-%m-%d %H:%M UTC')"
+            git push
+          else
+            echo "Tidak ada perubahan state, skip commit."
+          fi
