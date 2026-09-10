@@ -1,21 +1,3 @@
-"""
-Fase 3, Langkah 1: Ambil Data Trading ASLI - yfinance + pandas
-=================================================================
-Ini beda dari semua contoh sebelumnya: sekarang datanya BENERAN, bukan
-dictionary palsu kayak weather_agent. Ini yang nanti dipakai jadi isi
-tool get_price / get_indicator di trading agent kamu.
-
-Cara pakai:
-1. pip install yfinance pandas
-2. python3 trading_data.py
-
-Ganti TICKER di bagian bawah buat coba aset lain:
-  - "BTC-USD"  -> Bitcoin
-  - "ETH-USD"  -> Ethereum
-  - "BBCA.JK"  -> Bank BCA (saham Indonesia, WAJIB akhiran .JK)
-  - "AAPL"     -> Apple (saham AS)
-"""
-
 import yfinance as yf
 import pandas as pd
 
