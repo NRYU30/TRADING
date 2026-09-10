@@ -1,29 +1,3 @@
-"""
-Fase 4 (Capstone): Trading Agent Lengkap
-=============================================
-Menggabungkan SEMUA yang sudah dipelajari:
-- Fase 1: agent loop, tool use, memory, planning
-- Fase 2: LangChain, memory persisten (SQLite)
-- Fase 3: data pasar real (yfinance), indikator teknikal
-
-PENTING - INI BUKAN AUTO-TRADING BOT:
-Agent ini TIDAK terhubung ke broker sungguhan. Tool `record_trade` cuma
-MENCATAT keputusan ke jurnal simulasi (paper trading) di database lokal,
-dan SELALU minta konfirmasi manual dari kamu dulu sebelum tercatat.
-Ini prinsip human-in-the-loop: agent boleh MENGANALISIS dan MENGUSULKAN
-secara mandiri, tapi TIDAK BOLEH bertindak sendiri tanpa persetujuanmu.
-
-Kalau nanti kamu mau connect ke broker sungguhan, ganti isi record_trade
-dengan pemanggilan API broker asli - tapi WAJIB tetap pertahankan langkah
-konfirmasi manual ini, atau setidaknya batas risiko (max loss) yang ketat.
-
-Cara pakai:
-1. pip install yfinance pandas -qU langchain "langchain[google-genai]"
-2. python3 final_trading_agent.py
-3. Ngobrol bebas, contoh: "Analisis BTC-USD dong, gimana kondisinya?"
-   lalu: "Oke, catat rekomendasi itu ke jurnal simulasi"
-"""
-
 import sqlite3
 from datetime import datetime
 
