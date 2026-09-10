@@ -1,23 +1,3 @@
-"""
-Menggabungkan Fase 2 + Fase 3: Agent dengan Data Pasar SUNGGUHAN
-====================================================================
-Ini titik penting: tool get_weather yang selama ini dipakai buat latihan
-sekarang diganti tool yang narik DATA PASAR ASLI lewat yfinance.
-
-Strukturnya PERSIS sama kayak langchain_agent.py sebelumnya - cuma
-tool-nya yang beda isi. Ini bukti nyata kenapa kita belajar konsepnya
-dulu: begitu paham pola dasarnya, ganti "isi" tool jadi apa pun
-(cuaca -> kurs -> harga saham) tinggal soal ganti fungsi Python biasa.
-
-PENTING: Ini MURNI alat belajar. Sinyal SMA yang dihasilkan BUKAN saran
-finansial - jangan dipakai buat keputusan trading sungguhan tanpa
-riset & pemahaman risiko lebih lanjut.
-
-Cara pakai:
-1. pip install yfinance pandas -qU langchain "langchain[google-genai]"
-2. python3 market_agent.py
-"""
-
 import yfinance as yf
 import pandas as pd
 from langchain.agents import create_agent
